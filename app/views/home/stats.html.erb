@@ -1,0 +1,15 @@
+<h1> Analytics </h1>
+<div>
+  <% @shorturls.each do |short_url| %>
+    <div>
+      <p> 
+        <%= short_url.url %> <br/> 
+        http://localhost:3000/<%= short_url.unique_key %>
+
+      </p>
+      <p> No of Clicks: <%= short_url.use_count %> </p>
+      <p> Top Countries: <%= ShortendUrlStat.get_top_countries(short_url.id).join(",") %></p>
+    </div>
+    <hr>
+  <% end %>
+</div>

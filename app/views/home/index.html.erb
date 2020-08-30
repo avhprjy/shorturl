@@ -1,0 +1,27 @@
+<div>
+  <%= form_for("", url: "shorturl", method: 'post', remote: true) do |f|%>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+    <%= f.label "Please Enter URL" %>
+    <%= f.text_field "url", id: "original_url" %> 
+    <%= f.submit "Submit", id: "submit_button" %>
+  <% end %>
+</div>
+
+<br/>
+<div class="short_url_container">
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#submit_button").on("click", function(event) {
+        event.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "/shorturl",
+          data: $("form").serialize(),
+          success: function(result) {
+          }
+        });
+      });
+    });
+</script>
